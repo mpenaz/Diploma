@@ -13,11 +13,11 @@ In [Documentation](https://github.com/mpenaz/compas/tree/master/documentation) s
 2) Install Rails >= 5.0.2
 
 #### Angular application
-1) Install node.js and npm
+1) Install node.js, bower and npm
 
 #### Keycloak
 http://www.keycloak.org/downloads
-1) Download and install keycloak
+1) Download and install keycloak - tested on keycloak 3.4.0 final
 
 ### Setup development environment
 
@@ -30,6 +30,16 @@ bundle install
 rails db:migrate
 rake db:seed
 rails s
+```
+
+reset database into original state
+```
+rake db:seed
+```
+
+execute Rspec tests
+```
+bundle exec rspec
 ```
 
 #### Angular application
@@ -50,9 +60,9 @@ unix:
 win:
 ..pathToKeycloak/bin/standalone.bat
 ```
-default starts on: localhost:8080
+keycloak starts on: localhost:8080
 
-import realm and user information from [keycloak/configuration](https://github.com/mpenaz/compas/tree/master/keycloak-configuration)
+Import realm and user information from [keycloak/configuration](https://github.com/mpenaz/compas/tree/master/keycloak-configuration)
 
 you can login with:
 ```
