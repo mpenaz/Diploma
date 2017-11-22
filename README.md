@@ -45,7 +45,10 @@ Keycloak is used for authentication into application
 
 Run keycloak startup script
 ```
+unix:
 ..pathToKeycloak/bin/standalone.sh
+win:
+..pathToKeycloak/bin/standalone.bat
 ```
 default starts on: localhost:8080
 
@@ -55,6 +58,8 @@ you can login with:
 ```
 user: johnDoe
 password: john
+
+John Doe is manager of Josh, Villa, Adam
 
 user: joshBrown
 password: josh
