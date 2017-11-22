@@ -55,4 +55,13 @@ you can login with:
 ```
 user: johnDoe
 password: john
+
+user: joshBrown
+password: josh
+
+user: villaSye
+password: villa
+
+user: adamNew
+password: adam
 ```
