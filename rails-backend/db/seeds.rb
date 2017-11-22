@@ -38,8 +38,8 @@ petrPlan = Plan.create(startDate: '1.1.2009', endDate: '1.1.2010', status: 'crea
 hardyPlan = Plan.create(startDate: '1.1.2009', endDate: '1.1.2010', status: 'created', user_id: _tomHardy.id, evaluation_id: nil)
 novotnyPlan = Plan.create(startDate: '1.1.2009', endDate: '1.1.2010', status: 'created', user_id: _adamNovotny.id, evaluation_id: nil)
 
-_goal1 = Goal.create(title: 'Diploma thesis', description: 'Write diploma thesis.', complexity: 'Simple', priority: 'High', progress: 0)
-_goal2 = Goal.create(title: 'Rails backend', description: 'Create application backend in RoR', complexity: 'Simple', priority: 'High', progress: 50)
+_goal1 = Goal.create(title: 'Diploma thesis', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi bibendum vel quam id iaculis. Fusce in mi semper, eleifend quam vel, tempus turpis. Fusce nulla dui, dapibus in urna vel, luctus fringilla metus. Etiam rhoncus sed turpis quis gravida. Duis maximus ante ut ullamcorper pulvinar. Suspendisse nec erat magna. Etiam.', complexity: 'Simple', priority: 'High', progress: 0)
+_goal2 = Goal.create(title: 'Rails backend', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi bibendum vel quam id iaculis. Fusce in mi semper, eleifend quam vel, tempus turpis. Fusce nulla dui, dapibus in urna vel, luctus fringilla metus. Etiam rhoncus sed turpis quis gravida. Duis maximus ante ut ullamcorper pulvinar. Suspendisse nec erat magna. Etiam.', complexity: 'Simple', priority: 'High', progress: 50)
 
 johnPlan.goals << _goal1
 johnPlan.goals << _goal2

@@ -64,12 +64,19 @@ keycloak starts on: localhost:8080
 
 Import realm and user information from [keycloak/configuration](https://github.com/mpenaz/compas/tree/master/keycloak-configuration)
 
+
+#### Test Users information
+Peter Boss is a manager of John and Villa
+John Doe is a manager of Josh, Adam
+Villa Sye is working on shared goals together with John
+
 you can login with:
 ```
+user: peterBoss
+password: peter
+
 user: johnDoe
 password: john
-
-John Doe is manager of Josh, Villa, Adam
 
 user: joshBrown
 password: josh

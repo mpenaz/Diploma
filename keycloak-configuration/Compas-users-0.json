@@ -1,7 +1,7 @@
 {
   "realm" : "Compas",
   "users" : [ {
-    "id" : "02bdbc1f-2c44-4bd0-9293-d605a8af146d",
+    "id" : "269b9ada-7942-4da5-89d1-9c2f2157c203",
     "createdTimestamp" : 1511302669982,
     "username" : "adamnew",
     "enabled" : true,
@@ -21,16 +21,20 @@
       "counter" : 0,
       "algorithm" : "pbkdf2",
       "digits" : 0,
-      "createdDate" : 1511302718000
+      "period" : 0,
+      "createdDate" : 1511302718000,
+      "config" : { }
     } ],
+    "disableableCredentialTypes" : [ "password" ],
     "requiredActions" : [ ],
     "realmRoles" : [ "offline_access" ],
     "clientRoles" : {
       "account" : [ "manage-account", "view-profile" ]
     },
+    "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "02285b78-85c0-4c53-8aee-6c7175a3faee",
+    "id" : "d8d74755-2d2f-4a30-8b3e-6f61217de4e8",
     "createdTimestamp" : 1511182832382,
     "username" : "johndoe",
     "enabled" : true,
@@ -41,22 +45,26 @@
     "email" : "john.doe@mycompany.com",
     "credentials" : [ {
       "type" : "password",
-      "hashedSaltedValue" : "UviRURdR6fQz0wj5CQSMTXF4q3fbcji/mX6e2Rfy9LJqsHD/AcHNOmwpy6wZuL2zIPJnBk8m+Ij5MHX3R1eUUA==",
-      "salt" : "+6pIj1eHtLCYI5aCAjDelQ==",
+      "hashedSaltedValue" : "uinRb0lkJiOcaGr6Un+/xZEepHz4/brKLImsfPNKOHQeR8Hw7oywAtbhIWyCotidVWzcBDQbKCTTdE2tCZQU3g==",
+      "salt" : "EraDSdElWS+Lb3o6Wzjm+w==",
       "hashIterations" : 20000,
       "counter" : 0,
-      "algorithm" : "pbkdf2",
+      "algorithm" : "pbkdf2-sha256",
       "digits" : 0,
-      "createdDate" : 1511182851000
+      "period" : 0,
+      "createdDate" : 1511182851000,
+      "config" : { }
     } ],
+    "disableableCredentialTypes" : [ "password" ],
     "requiredActions" : [ ],
     "realmRoles" : [ "offline_access" ],
     "clientRoles" : {
       "account" : [ "manage-account", "view-profile" ]
     },
+    "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "6410de2e-482e-4211-a77d-ed1547da5e1b",
+    "id" : "d7bed3ff-f212-49d2-bcaf-a1d05de82cda",
     "createdTimestamp" : 1511181847217,
     "username" : "joshbrown",
     "enabled" : true,
@@ -76,16 +84,50 @@
       "counter" : 0,
       "algorithm" : "pbkdf2",
       "digits" : 0,
-      "createdDate" : 1511182763000
+      "period" : 0,
+      "createdDate" : 1511182763000,
+      "config" : { }
     } ],
+    "disableableCredentialTypes" : [ "password" ],
     "requiredActions" : [ ],
     "realmRoles" : [ "offline_access" ],
     "clientRoles" : {
       "account" : [ "manage-account", "view-profile" ]
     },
+    "notBefore" : 0,
     "groups" : [ ]
   }, {
-    "id" : "753329d1-ed2f-4df6-b657-f69948ad563d",
+    "id" : "95c216f4-1fc0-45ea-91b8-999dd34a4219",
+    "createdTimestamp" : 1511364376475,
+    "username" : "peterboss",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Peter",
+    "lastName" : "Boss",
+    "email" : "peter.boss@mycompany.com",
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "AO4sCF1GzOcxzRPDN6SV0D2GGTVMUcYOVz2uK4azAfMMkDBKNyWhqvBZIAQV0tKGB8lHcrrMXMhIB+iaKnXPug==",
+      "salt" : "WPLvSX7bQ3CY+9s8QDzd+w==",
+      "hashIterations" : 20000,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1511364393182,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "9f73e13c-1a01-4ee5-a92c-f646dfac9f08",
     "createdTimestamp" : 1511266235697,
     "username" : "villasye",
     "enabled" : true,
@@ -105,13 +147,17 @@
       "counter" : 0,
       "algorithm" : "pbkdf2",
       "digits" : 0,
-      "createdDate" : 1511266256000
+      "period" : 0,
+      "createdDate" : 1511266256000,
+      "config" : { }
     } ],
+    "disableableCredentialTypes" : [ "password" ],
     "requiredActions" : [ ],
     "realmRoles" : [ "offline_access" ],
     "clientRoles" : {
       "account" : [ "manage-account", "view-profile" ]
     },
+    "notBefore" : 0,
     "groups" : [ ]
   } ]
 }
