@@ -107,7 +107,7 @@ angular.module('myApp').service('promptService', ['$uibModal', function($uibModa
   };
 }]);
 
-angular.module('myApp').service('goalService', ['$http', '$uibModal', function($http, $uibModal) {
+angular.module('myApp').service('goalService', ['$http', '$uibModal', '$filter', function($http, $uibModal, $filter) {
   this.openGoalCreateModal = function(data) {
     return $uibModal.open({
       template: '<goal-modal data="$ctrl.data" close="$close(result)" dismiss="$dismiss(reason)"></goal-modal>',
@@ -122,6 +122,24 @@ angular.module('myApp').service('goalService', ['$http', '$uibModal', function($
         }
       }
     });
+  };
+
+  this.sortByPriority = function(goals) {
+    var sortedList = undefined;
+    for (var i = 0; i < goals.length; i++) {
+      if (goals[i].priority == "High") {
+        goals[i].prio = 1;
+      } else if (goals[i].priority == "Medium") {
+        goals[i].prio = 2;
+      } else {
+        goals[i].prio = 3;
+      }
+    }
+    sortedList = $filter('orderBy')(goals, 'prio', false);
+    for (var i = 0; i < sortedList.length; i++) {
+      sortedList[i].prio = undefined;
+    }
+    return sortedList;
   };
 
   this.createGoal = function(goal) {

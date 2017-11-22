@@ -6,7 +6,7 @@ angular.module('myApp').component('goal', {
     review: '<',
     manager: '<'
   },
-  controller: ['$scope', '$templateCache', 'goalService', 'promptService', function BasicCtrl($scope, $templateCache, goalService, promptService) {
+  controller: ['$scope', '$filter', '$templateCache', 'goalService', 'promptService', function BasicCtrl($scope, $filter, $templateCache, goalService, promptService) {
     this.$onChanges = function() {
       $scope.items = this.goals;
       if (this.review || this.plan.status == 'created') {

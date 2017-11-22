@@ -25,11 +25,13 @@ angular.module('myApp').component('plan', {
       if ($scope.plans != null && $scope.plans[0] != null) {
         $scope.plans = $filter('orderBy')($scope.plans, 'start', true)
         $scope.plan = $scope.plans[0];
+        $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
         $scope.planProgressValue = planService.getPlanProgress($scope.plan);
       };
 
       if (this.review) {
         $scope.plan = this.review;
+        $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
         $scope.planProgressValue = planService.getPlanProgress($scope.plan);
       }
 
@@ -38,6 +40,7 @@ angular.module('myApp').component('plan', {
         if ($rootScope.previousState.params.callBack) {
           //console.log($rootScope.previousState.params.callBack)
           $scope.plan = $rootScope.previousState.params.callBack;
+          $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
           $scope.planProgressValue = planService.getPlanProgress($scope.plan);
         }
       }
@@ -88,6 +91,7 @@ angular.module('myApp').component('plan', {
 
       function onPlanSelect(event, plan) {
         $scope.plan = plan;
+        $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
         $scope.planProgressValue = planService.getPlanProgress(plan);
       };
 
@@ -172,6 +176,8 @@ angular.module('myApp').component('plan', {
         });
       };
 
+
+
       $ctrl.mergePlans = function() {
         var plan = $scope.plan;
         var index = $scope.plans.indexOf(plan) + 1;
@@ -216,6 +222,7 @@ angular.module('myApp').component('plan', {
             }
 
             $scope.plan.goals = $scope.plan.goals.concat(data.data);
+            $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
             $scope.planProgressValue = planService.getPlanProgress($scope.plan);
             notify('success', 'Plans merged and goals added.');
             _.defer(function() {
@@ -251,6 +258,7 @@ angular.module('myApp').component('plan', {
           if (result.edit) {
             goalService.updateGoal(goal).then(function(data) {
               $scope.planProgressValue = planService.getPlanProgress($scope.plan);
+              $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
               notify('success', 'Goal edited.');
             });
           } else {
@@ -258,6 +266,7 @@ angular.module('myApp').component('plan', {
             goal.complexity = 'Simple';
             goalService.createGoal(goal).then(function(data) {
               $scope.plan.goals.push(data.data);
+              $scope.plan.goals = goalService.sortByPriority($scope.plan.goals);
               $scope.planProgressValue = planService.getPlanProgress($scope.plan);
               notify('success', 'Goal created.');
             });
