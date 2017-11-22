@@ -122,17 +122,17 @@ angular.module('myApp').controller('sharedController', ['$filter', '$scope', '$s
       var email = auth.authz.tokenParsed.email;
       userService.getCurrentUser(email).then(function(data) {
         $scope.currentUser = data.data;
-        _.defer(function() {
-          $scope.$apply();
+        userService.getSubordinates($scope.currentUser.id).then(function(data) {
+          $scope.subordinates = data.data;
+          //Sort associate lists to show the most recent one
+          sortPlans();
+          $scope.items = $scope.currentUser.goals;
+          //Split completed and active goals
+          splitGoals();
+          _.defer(function() {
+            $scope.$apply();
+          });
         });
-      });
-      userService.getSubordinates($scope.currentUser.id).then(function(data) {
-        $scope.subordinates = data.data;
-        //Sort associate lists to show the most recent one
-        sortPlans();
-        $scope.items = $scope.currentUser.goals;
-        //Split completed and active goals
-        splitGoals();
       });
     };
   }
