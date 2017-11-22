@@ -1,0 +1,117 @@
+{
+  "realm" : "Compas",
+  "users" : [ {
+    "id" : "02bdbc1f-2c44-4bd0-9293-d605a8af146d",
+    "createdTimestamp" : 1511302669982,
+    "username" : "adamnew",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Adam",
+    "lastName" : "New",
+    "email" : "adam.new@mycompany.com",
+    "attributes" : {
+      "manager" : [ "john.doe@mycompany.com" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "MT6xYLNs71jlEIwc1R4E10DPGx50jCieh/+DCYFICZQjTkemtvKeKATC9ovyxguB3VfubVtM2XTS82b9uoeQKg==",
+      "salt" : "PuEhFy74/PTgEPRVKStslQ==",
+      "hashIterations" : 20000,
+      "counter" : 0,
+      "algorithm" : "pbkdf2",
+      "digits" : 0,
+      "createdDate" : 1511302718000
+    } ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "groups" : [ ]
+  }, {
+    "id" : "02285b78-85c0-4c53-8aee-6c7175a3faee",
+    "createdTimestamp" : 1511182832382,
+    "username" : "johndoe",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "John",
+    "lastName" : "Doe",
+    "email" : "john.doe@mycompany.com",
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "UviRURdR6fQz0wj5CQSMTXF4q3fbcji/mX6e2Rfy9LJqsHD/AcHNOmwpy6wZuL2zIPJnBk8m+Ij5MHX3R1eUUA==",
+      "salt" : "+6pIj1eHtLCYI5aCAjDelQ==",
+      "hashIterations" : 20000,
+      "counter" : 0,
+      "algorithm" : "pbkdf2",
+      "digits" : 0,
+      "createdDate" : 1511182851000
+    } ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "groups" : [ ]
+  }, {
+    "id" : "6410de2e-482e-4211-a77d-ed1547da5e1b",
+    "createdTimestamp" : 1511181847217,
+    "username" : "joshbrown",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Josh",
+    "lastName" : "Brown",
+    "email" : "josh.brown@mycompany.com",
+    "attributes" : {
+      "manager" : [ "john.doe@mycompany.com" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "93dlbXhcFVyqHS91WjI3wHFL4E16neRKB29Pc03Q1d72wJSvwMNWHxqx7bBIkGxWXOxvM60zwEJxS6VmdVKR3A==",
+      "salt" : "3YiQ49LmV1CmD72z8+Pv+A==",
+      "hashIterations" : 20000,
+      "counter" : 0,
+      "algorithm" : "pbkdf2",
+      "digits" : 0,
+      "createdDate" : 1511182763000
+    } ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "groups" : [ ]
+  }, {
+    "id" : "753329d1-ed2f-4df6-b657-f69948ad563d",
+    "createdTimestamp" : 1511266235697,
+    "username" : "villasye",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Villa",
+    "lastName" : "Sye",
+    "email" : "villa.sye@mycompany.com",
+    "attributes" : {
+      "manager" : [ "john.doe@mycompany.com" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "Z6SAeTHs7gZBHSN8qXFGKIvVmISxjSA4hPn7r1u1WABuwcwvFqdGGOhPZtgN3J+EAgHvzrfBdFaCsg5XvScdfg==",
+      "salt" : "0lhc23VtFcOESB0DtA5r9g==",
+      "hashIterations" : 20000,
+      "counter" : 0,
+      "algorithm" : "pbkdf2",
+      "digits" : 0,
+      "createdDate" : 1511266256000
+    } ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "groups" : [ ]
+  } ]
+}
