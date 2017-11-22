@@ -1,0 +1,31 @@
+<div ng-show="notification" class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <pf-inline-notification pf-notification-type="notification.type"
+                 pf-notification-header="notification.header"
+                 pf-notification-message="notification.message">
+               </pf-inline-notification>
+    </div>
+  </div>
+</div>
+
+<div class="headerCard">
+    <h1 class="text-center">Shared Goals Overview</h1>
+    <div class="text-center">
+        <button ng-click="createShared(subordinates)" class="btn btn-primary">Create Shared Goal</button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <uib-tabset active="active">
+      <uib-tab index="0" heading="Active Goals ({{activeGoals.length}})">
+        <goal manager="true" review="true" goals="activeGoals"></goal>
+      </uib-tab>
+      <uib-tab index="1" heading="Completed Goals ({{completedGoals.length}})">
+        <goal manager="true" review="true" goals="completedGoals"></goal>
+      </uib-tab>
+    </uib-tabset>
+
+    <!--<goal manager="true" review="true" goals="items"></goal>-->
+</div>

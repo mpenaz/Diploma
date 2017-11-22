@@ -1,0 +1,43 @@
+<div ng-show="notification" class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <pf-inline-notification pf-notification-type="notification.type"
+                 pf-notification-header="notification.header"
+                 pf-notification-message="notification.message">
+               </pf-inline-notification>
+    </div>
+  </div>
+</div>
+
+<div class="headerCard">
+    <h1 class="text-center">Associates Overview</h1>
+    <div class="text-center">
+        <button ng-click="openCreatePlan(subordinates)" class="btn btn-primary">Create plans</button>
+    </div>
+    <br>
+</div>
+
+<div class="container-fluid">
+  <div ng-if="subordinates" ng-repeat="row in groupedUsers">
+    <div class="row">
+      <div ng-if="subordinates" ng-repeat="associate in row">
+        <div class="col-sm-2">
+            <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                <h2 class="card-pf-title">
+                    <span ng-if="reportStatus(associate) != 'completed'" class="fa fa-shield"></span>
+                    <span ng-if="reportStatus(associate) == 'completed'" data-toggle="tooltip" data-placement="top" title="Plan pending review" class="pficon pficon-warning-triangle-o"></span>
+                    <span class="card-pf-aggregate-status-count" ><a ng-click="reportDetail(associate)" href="">{{associate.name}}</a></span>
+                </h2>
+                <div class="card-pf-body">
+                    <div ng-if="associate.sortedList[0]">
+                        <h3>Current plan progress</h3>
+                        <donutchart value="associate.sortedList[0]"></donutchart>
+                    </div>
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

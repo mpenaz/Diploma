@@ -1,0 +1,27 @@
+{
+  "name": "angular-seed",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-loader": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "html5-boilerplate": "^5.3.0",
+    "angular-resource": "~1.5.0",
+    "patternfly": "^3.28.1",
+    "angular-patternfly": "^4.11.5",
+    "c3": "^0.4.18",
+    "jquery": "^3.2.1",
+    "angular-bootstrap": "^2.5.0",
+    "bootstrap-combobox": "^1.1.8",
+    "keycloak": "^3.3.0",
+    "angular-drag-and-drop-lists": "^2.1.0",
+    "lodash": "^4.17.4",
+    "angular-ui-router": "^1.0.10",
+    "angular-ui-select": "^0.19.8"
+  }
+}

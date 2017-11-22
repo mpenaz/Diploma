@@ -1,0 +1,45 @@
+<div class="row">
+    <div ng-if="items[0]" class="col-md-12">
+        <pf-list-view id="exampleListView"
+                      config="config"
+                      items="items"
+                      action-buttons="actionButtons"
+                      enable-button-for-item-fn="enableButtonForItemFn">
+            <div class="list-view-pf-description">
+                <div class="list-group-item-text">
+                    {{item.title}}
+                    <div class="progress" ng-if="!item.isExpanded">
+                        <uib-progressbar type="success" value="item.progress" >{{item.progress}}%</uib-progressbar>
+                    </div>
+                </div>
+            </div>
+            <list-expanded-content>
+                <div class="row">
+                    <div class="col-md-3">
+                        <donutchart value="$parent.item.progress"></donutchart>
+                    </div>
+                    <div class="col-md-9">
+                        <dl class="dl-horizontal">
+                        	<dt>Id</dt>
+                            <dd>{{$parent.item.id}}</dd>
+                            <dt ng-if="$parent.item.shared_goals.length">Assigned</dt>
+                            <div  ng-repeat="user in $parent.item.shared_goals">
+                                <dd>{{user.name}}</dd>
+                            </div>
+                            <dt>Title</dt>
+                            <dd>{{$parent.item.title}}</dd>
+                            <dt>Priority</dt>
+                            <dd>{{$parent.item.priority}}</dd>
+                            <dt>Progress</dt>
+                            <dd>{{$parent.item.progress}}%</dd>
+                            <dt>Type</dt>
+                            <dd>{{$parent.item.complexity}}</dd>
+                            <dt>Description</dt>
+                            <dd>{{$parent.item.description}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </list-expanded-content>
+        </pf-list-view>
+    </div>
+</div>

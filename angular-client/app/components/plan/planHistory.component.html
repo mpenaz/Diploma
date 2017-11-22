@@ -1,0 +1,27 @@
+<div class="row example-container">
+    <div ng-if="items[0]" class="col-md-12 list-view-container example-list-view">
+        <pf-list-view id="exampleListView"
+                      config="config"
+                      empty-state-config="emptyStateConfig"
+                      items="items"
+                      action-buttons="actionButtons"
+                      menu-actions="menuActions"
+                      empty-state-action-buttons="emptyStateActionButtons"
+                      page-config="pageConfig">
+            <div class="list-view-pf-description">
+                <div class="list-group-item-text">
+                    Start: {{item.startDate}} End: {{item.endDate}}
+                    <span data-toggle="tooltip" data-placement="top" title="Work in progress" ng-if="item.status == 'created'" class="pull-right">
+                                <a href="#"><span class="pficon pficon-edit"></span></a>
+                            </span>
+                    <span data-toggle="tooltip" data-placement="top" title="Waiting for review" ng-if="item.status == 'completed'" class="pull-right"><a href="#">
+                                <span class="pficon pficon-warning-triangle-o"></span></a>
+                    </span>
+                    <span data-toggle="tooltip" data-placement="top" title="Reviewed" ng-if="item.status == 'reviewed'" class="pull-right"><a href="#">
+                                <span class="pficon pficon-ok"></span></a>
+                    </span>
+                </div>
+            </div>
+        </pf-list-view>
+    </div>
+</div>

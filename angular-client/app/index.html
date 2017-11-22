@@ -1,0 +1,102 @@
+<html>
+<head>
+    <!-- build:css styles/css/bower_components.css -->
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.min.css"/>
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css"/>
+    <link rel="stylesheet" href="bower_components/angular-patternfly/dist/styles/angular-patternfly.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+    <!-- endbuild -->
+
+    <!-- build:js js/bower_components.js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/patternfly/dist/js/patternfly.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/angular-patternfly/dist/angular-patternfly.js"></script>
+    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/stateEvents.min.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+    <!-- it is better to download keycloak js from server -->
+    <script src="http://localhost:8080/auth/js/keycloak.js"></script>
+    <!-- endbuild -->
+
+    <script src="app.js"></script>
+    <script src="components/home/home.component.js"></script>
+    <script src="components/goal/goal.component.js"></script>
+    <script src="components/goal/goalModal.component.js"></script>
+    <script src="components/charts/progress.component.js"></script>
+    <script src="components/plan/plan.component.js"></script>
+    <script src="components/plan/planModal.component.js"></script>
+    <script src="components/plan/planHistory.component.js"></script>
+    <script src="components/plan/prompt.component.js"></script>
+    <script src="components/plan/planMerge.component.js"></script>
+    <script src="components/reports/reports.component.js"></script>
+    <script src="components/shared/shared.component.js"></script>
+    <script src="services/services.js"></script>
+</head>
+
+<body data-ng-controller="GlobalCtrl">
+<div >
+ <nav class="navbar navbar-default navbar-pf" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img  alt="Compas" />
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-utility">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="pficon pficon-user"></span>
+                        {{currentUser.name}} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ng-click="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-primary">
+                <li ng-class="{active: homeClass}">
+                    <a  href="" ng-click="home()">My Plan</a>
+                </li>
+                <li ng-if="associates[0]" ng-class="{active: reportsClass}">
+                    <a href="" ng-click="reports()">Reports</a>
+                </li>
+                <li ng-if="associates[0]" ng-class="{active: teamClass}">
+                    <a href="" ng-click="shared()">Shared Goals</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div ng-show="notification" class="container-fluid">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <pf-inline-notification pf-notification-type="notification.type"
+                     pf-notification-header="notification.header"
+                     pf-notification-message="notification.message">
+                   </pf-inline-notification>
+        </div>
+      </div>
+    </div>
+    <div ui-view></div>
+</div>
+</body>
+</html>

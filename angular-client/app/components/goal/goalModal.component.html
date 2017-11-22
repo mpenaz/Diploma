@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$ctrl.handleDismiss()">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title" ng-if="$ctrl.edit == false">Create Goal</h4>
+  <h4 class="modal-title" ng-if="$ctrl.edit == true">Edit Goal</h4>
+</div>
+<div class="modal-body">
+  <form name="goalForm" novalidate class="form-horizontal">
+    <pf-form-group pf-label="Title" required pf-label-class="col-sm-2"
+     pf-input-class="col-sm-9" ng-class="{ 'has-error' : $ctrl.submitted && goalForm.title.$invalid }">
+      <input placeholder="Goal title" id="title" name="title" ng-model="$ctrl.item.title" type="text" required/>
+      <span class="help-block" ng-show="$ctrl.submitted && goalForm.title.$invalid">The title is required.</span>
+    </pf-form-group>
+    <pf-form-group pf-label="Description" pf-label-class="col-sm-2" pf-input-class="col-sm-9"
+     ng-class="{ 'has-error' : $ctrl.submitted && goalForm.description.$invalid }">
+      <textarea id="description" name="description" ng-model="$ctrl.item.description" required
+      rows="10" placeholder="SMART goal description:
+Specific – goal should be clear and specific.
+Measurable – quantify or at least suggest an indicator of progress.
+Achievable – goal also needs to be realistic and attainable to be successful.
+Realistic – state what results can realistically be achieved, given available resources.
+Time-related – can be done in specified timeframe.">
+        {{ item.description }}
+      </textarea>
+      <span class="help-block" ng-show="$ctrl.submitted && goalForm.description.$invalid">The description is required.</span>
+    </pf-form-group>
+    <pf-form-group pf-label="Progress" required pf-label-class="col-sm-2" pf-input-class="col-sm-9">
+      <div class="progress" ng-click="$ctrl.trackProgress($event)">
+        <uib-progressbar type="success" value="$ctrl.progressBarValue">{{$ctrl.progressBarValue}}%</uib-progressbar>
+      </div>
+    </pf-form-group>
+    <pf-form-group pf-label="Priority" required pf-label-class="col-sm-2" pf-input-class="col-sm-9">
+      <pf-select selected="$ctrl.item.priority" options="$ctrl.priorities"></pf-select>
+    </pf-form-group>
+
+    <div ng-if="$ctrl.associates">
+      <pf-form-group pf-label="Assigned associates" required pf-label-class="col-sm-2" pf-input-class="col-sm-9"
+      ng-class="{ 'has-error' : $ctrl.submitted  && goalForm.selected.$invalid }">
+        <ui-select name="selected" multiple ng-model="$ctrl.item.selected" theme="bootstrap" ng-disabled="ctrl.disabled" sortable="true" close-on-select="false" required>
+          <ui-select-match placeholder="Select associates...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+          <ui-select-choices repeat="associate in $ctrl.associates |  filter: {name: $select.search}">
+            <div ng-bind-html="associate.name | highlight: $select.search"></div>
+            <small>
+                {{associate.name}}
+                &lt;{{associate.email}}&gt;
+            </small>
+          </ui-select-choices>
+        </ui-select>
+        <span class="help-block" ng-show="$ctrl.submitted && goalForm.selected.$invalid">Assign atleast one associate.</span>
+      </pf-form-group>
+    </div>
+    <br>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" ng-click="$ctrl.handleClose(goalForm)">Save</button>
+      <button type="button" class="btn btn-default" ng-click="$ctrl.handleDismiss()">Cancel</button>
+    </div>
+  </form>
+
+</div>

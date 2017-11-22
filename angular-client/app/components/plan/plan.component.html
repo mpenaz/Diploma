@@ -1,0 +1,187 @@
+<div ng-show="notification" class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <pf-inline-notification pf-notification-type="notification.type"
+                 pf-notification-header="notification.header"
+                 pf-notification-message="notification.message">
+               </pf-inline-notification>
+    </div>
+  </div>
+</div>
+
+<div class="headerCard">
+    <h1 ng-if="!review" class="text-center">Plan Overview<div ng-if="$ctrl.report">{{$ctrl.user.name}}</div></h1>
+    <h1 ng-if="review" class="text-center">Plan Review: {{$ctrl.user.name}}</h1>
+</div>
+<div class="container-fluid">
+  <div ng-if="!plan && !report && !review">
+  	<h2 class="text-center">Manager has to create plan first.</h2>
+  </div>
+
+  <div ng-if="!plan && report && !review" class="text-center">
+  	<h2 >Begin with plan creation.</h2>
+  	<button class="btn btn-primary" ng-click="$ctrl.openCreatePlan($ctrl.user)">Create Plan</button>
+  </div>
+
+    <div class="row">
+		  <div ng-if="plan" class="col-md-3">
+              <div class="card-pf card-pf-accented card-pf-utilization">
+                  <div class="card-pf-heading">
+                      <h2 class="card-pf-title">
+                          <span>Plan details</span>
+                      </h2>
+
+                      <div class="card-pf-body">
+
+                        <div ng-if="review">
+                            <donutchart value="planProgressValue"></donutchart>
+                                  <p>
+                                      <label class="control-label">Plan id:</label>
+                                      <span>{{plan.id}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan start:</label>
+                                      <span>{{plan.startDate}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan end:</label>
+                                      <span>{{plan.endDate}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan status:</label>
+                                      <span>{{plan.status}}</span>
+                                  </p>
+                        </div>
+
+                        <div ng-if="!review">
+
+                                <donutchart value="planProgressValue"></donutchart>
+                                  <p>
+                                      <label class="control-label">Plan id:</label>
+                                      <span>{{plan.id}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan start:</label>
+                                      <span>{{plan.startDate}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan end:</label>
+                                      <span>{{plan.endDate}}</span>
+                                  </p>
+                                  <p>
+                                      <label class="control-label">Plan status:</label>
+                                      <span>{{plan.status}}</span>
+                                  </p>
+                                  <div ng-if="!report" class="text-center">
+                                      <div class="completed" ng-if="plan.status == 'created'">
+                                          <button ng-click="$ctrl.submitForReview(plan)" class="btn btn-primary">Submit plan for review</button>
+                                          <button class="btn btn-primary" ng-click="$ctrl.mergePlans(plan)">Transfer unfinished goals</button>
+                                      </div>
+                                  </div>
+
+                                  <div class="container-fluid" ng-if="report">
+                                      <div class="row text-center">
+                                          <button ng-if="plan.status == 'completed'" ng-click="$ctrl.reviewPlan(plan)" class="btn btn-primary">Review Plan</button>
+                                          <button ng-if="plan.status == 'created' && $ctrl.showTransferGoals()" class="btn btn-primary" ng-click="$ctrl.mergePlans()">Transfer unfinished goals</button>
+                                          <button class="btn btn-danger" ng-click="$ctrl.deletePlan(plan)">Delete Plan</button>
+                                      </div>
+                                  </div>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="card-pf utilization">
+                      <div class="card-pf-heading">
+                          <h2 class="card-pf-title">
+                              <span>Plan evaluation</span>
+                          </h2>
+                          <div class="card-pf-body">
+                              <div class="container-fluid">
+                                  <div ng-if="review">
+                                      <form name="evaluationForm" novalidate class="form-horizontal">
+                                          <pf-form-group pf-label="Rating" ng-class="{ 'has-error' : $ctrl.evalSubmitted && evaluationForm.rating.$invalid }">
+                                              <span required name="rating" uib-rating ng-model="evaluation.rating" max="10" read-only="false">
+                                              </span><span>{{evaluation.rating}}/10</span>
+                                              <span class="help-block" ng-show="$ctrl.evalSubmitted && evaluationForm.rating.$invalid">The evaluation rating is required.</span>
+                                          </pf-form-group>
+                                          <pf-form-group pf-label="Description" ng-class="{ 'has-error' : $ctrl.evalSubmitted && evaluationForm.description.$invalid }">
+                                          <textarea required id="description" name="description" ng-model="evaluation.description">
+                                            {{evaluation.description}}
+                                          </textarea>
+                                          <span class="help-block" ng-show="$ctrl.evalSubmitted && evaluationForm.description.$invalid">The evaluation is required.</span>
+                                          </pf-form-group>
+                                          <div class="text-center">
+                                              <button class="btn btn-primary" ng-click="$ctrl.submitReview(evaluationForm)">Submit Evaluation</button>
+                                              <button class="btn btn-default" ng-click="$ctrl.cancelReview()">Cancel Review</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                                  <div ng-if="plan.evaluation_id" >
+                                      <form class="form-horizontal">
+                                        <pf-form-group pf-label="Rating">
+                                          <span uib-rating ng-model="plan.evaluation.rating" max="10" read-only="true"></span>{{plan.evaluation.rating}}/10
+                                        </pf-form-group>
+                                        <pf-form-group pf-label="Description">
+                                          <textarea id="description" name="description" ng-model="plan.evaluation.description">
+                                            {{plan.evaluation.description}}
+                                          </textarea>
+                                        </pf-form-group>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+		    </div>
+
+		  <div ng-if="plan && !review" class="col-md-6">
+              <div class="card-pf card-pf-accented">
+                  <div class="card-pf-heading">
+                      <h2 class="card-pf-title">
+                          <span>Planned Goals</span>
+                      </h2>
+                      <div class="card-pf-body">
+                        <goal manager="report" goals="plan.goals" review="review" plan="plan"></goal>
+                        <div class="container-fluid">
+                          <div class="row text-center">
+                                  <button ng-if="(!review) && (plan.status == 'created')" class="btn btn-primary" ng-click="$ctrl.openCreateGoal()" >Create Goal</button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+		  </div>
+
+      <div ng-if="plan && review" class="col-md-9">
+              <div class="card-pf card-pf-accented">
+                  <div class="card-pf-heading">
+                      <h2 class="card-pf-title">
+                          <span>Planned Goals</span>
+                      </h2>
+                      <div class="card-pf-body">
+                        <goal manager="true" goals="plan.goals" review="review" plan="plan"></goal>
+                        <div class="container-fluid">
+                          <div class="row text-center">
+                                  <button ng-if="(!review) && (plan.status == 'created')" class="btn btn-primary" ng-click="$ctrl.openCreateGoal()" >Create Goal</button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+		  </div>
+
+        <div ng-if="plan && !review" class="col-md-3">
+            <div class="card-pf card-pf-accented">
+                <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                        <span>Plan manager</span>
+                        <button ng-if="report" class="btn btn-primary pull-right" ng-click="$ctrl.openCreatePlan($ctrl.user)">Create Plan</button>
+                    </h2>
+                    <div class="card-pf-body">
+                        <plan-history selected-plan="plan" report="report" plans="plans"></plan-history>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>

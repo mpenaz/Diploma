@@ -1,0 +1,81 @@
+<style>
+    .glyphicon{
+        font-size: 16px;
+    }
+
+    .glyphicon-calendar{
+        font-size: 20px;
+    }
+
+    .table.dataTable{
+        height: 10px;
+    }
+</style>
+
+
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.handleDismiss()">
+        <span class="pficon pficon-close"></span>
+    </button>
+    <h1 class="modal-title">Create Plan</h1>
+</div>
+<div class="modal-body">
+
+    <div class="container-fluid">
+        <form name="planForm" class="form-horizontal" novalidate>
+          <pf-form-group pf-label="Plan start" required pf-label-class="col-sm-2" pf-input-class="col-sm-9"
+          ng-class="{ 'has-error' : $ctrl.submitted  && planForm.dateStart.$invalid }">
+                <p class="input-group" name="dtStart" required>
+                    <input required type="text" class="form-control" ng-model="dtStart"
+                           is-open="config1.opened"  uib-datepicker-popup="dd-MM-yyyy"
+                           close-text="Close" name="dateStart"/>
+                    <span class="input-group-btn">
+                       <button type="button" class="btn btn-default" ng-click="open1($event)">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                </span>
+                </p>
+                <span class="help-block" ng-show="$ctrl.submitted && planForm.dateStart.$invalid">Invalid date.</span>
+            </pf-form-group>
+
+            <pf-form-group pf-label="Plan end" required pf-label-class="col-sm-2" pf-input-class="col-sm-9"
+            ng-class="{ 'has-error' : $ctrl.submitted  && planForm.dateEnd.$invalid }">
+                <p class="input-group" name="dtEnd" required>
+                    <input required type="text" class="form-control" ng-model="dtEnd"
+                           is-open="config2.opened"  uib-datepicker-popup="dd-MM-yyyy"
+                           close-text="Close" name="dateEnd" />
+                    <span class="input-group-btn">
+                       <button type="button" class="btn btn-default" ng-click="open2($event)">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                </span>
+                </p>
+                <span class="help-block" ng-show="$ctrl.submitted && planForm.dateEnd.$invalid">Invalid date.</span>
+            </pf-form-group>
+
+            <div ng-if="associates">
+              <pf-form-group pf-label="Assigned associates" required pf-label-class="col-sm-2" pf-input-class="col-sm-9"
+              ng-class="{ 'has-error' : $ctrl.submitted  && planForm.selected.$invalid }">
+                <ui-select name="selected" multiple ng-model="$ctrl.selected" theme="bootstrap" ng-disabled="ctrl.disabled" sortable="true"
+                 close-on-select="false" required>
+                  <ui-select-match placeholder="Select associates...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+                  <ui-select-choices repeat="associate in associates |  filter: {name: $select.search}">
+                    <div ng-bind-html="associate.name | highlight: $select.search"></div>
+                    <small>
+                        {{associate.name}}
+                        &lt;{{associate.email}}&gt;
+                    </small>
+                  </ui-select-choices>
+                </ui-select>
+                <span class="help-block" ng-show="$ctrl.submitted && planForm.selected.$invalid">Assign atleast one associate.</span>
+              </pf-form-group>
+            </div>
+
+
+            <div class="text-center">
+              <button class="btn btn-primary" ng-click="$ctrl.handleClose(planForm)">Save</button>
+              <button class="btn btn-default" ng-click="$ctrl.handleDismiss()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

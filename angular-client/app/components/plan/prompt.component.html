@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h1 class="modal-title">{{$ctrl.data.header}}</h1>
+</div>
+<div class="modal-body">
+  <span>{{$ctrl.data.text}}</span>
+</div>
+<div class="modal-footer">
+  <button ng-click="$ctrl.handleDismiss()" class="btn btn-default">Cancel</button>
+  <button ng-if="$ctrl.data.button == 'primary'" ng-click="$ctrl.handleClose()" class="btn btn-primary">Submit</button>
+  <button ng-if="$ctrl.data.button == 'delete'" ng-click="$ctrl.handleClose()" class="btn btn-danger">Delete</button>
+</div>
