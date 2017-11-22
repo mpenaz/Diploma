@@ -102,6 +102,9 @@ angular.module('myApp').component('planMerge', {
           } else {
             goal.id = undefined;
           }
+          if (goal.complexity == 'Simple') {
+            goal.old_id = undefined;
+          }
           array.push(goal);
         }
       }

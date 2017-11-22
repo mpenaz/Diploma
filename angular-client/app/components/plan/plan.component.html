@@ -83,7 +83,6 @@
                                       <div class="row text-center">
                                           <button ng-if="plan.status == 'completed'" ng-click="$ctrl.reviewPlan(plan)" class="btn btn-primary">Review Plan</button>
                                           <button ng-if="plan.status == 'created' && $ctrl.showTransferGoals()" class="btn btn-primary" ng-click="$ctrl.mergePlans()">Transfer unfinished goals</button>
-                                          <button class="btn btn-danger" ng-click="$ctrl.deletePlan(plan)">Delete Plan</button>
                                       </div>
                                   </div>
                             </div>
