@@ -20,8 +20,6 @@
                     </div>
                     <div class="col-md-9">
                         <dl class="dl-horizontal">
-                        	<dt>Id</dt>
-                            <dd>{{$parent.item.id}}</dd>
                             <dt ng-if="$parent.item.shared_goals.length">Assigned</dt>
                             <div  ng-repeat="user in $parent.item.shared_goals">
                                 <dd>{{user.name}}</dd>
