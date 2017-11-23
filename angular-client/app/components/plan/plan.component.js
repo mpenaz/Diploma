@@ -154,15 +154,11 @@ angular.module('myApp').component('plan', {
           $scope.plan.evaluation = data.data;
           $scope.plan.status = 'reviewed';
           $scope.$emit('onReviewPlanEvent', $scope.plan);
-          if ($rootScope.previousState.name != 'reportDetail') {
-            $state.go('reportDetail', {
-              obj: $ctrl.user,
-              report: true,
-              user: $ctrl.user
-            });
-          } else {
-            $state.go($rootScope.previousState.name, $rootScope.previousState.params);
-          }
+          $state.go('reportDetail', {
+            obj: $ctrl.user,
+            report: true,
+            user: $ctrl.user
+          });
         });
       }
 
@@ -254,6 +250,7 @@ angular.module('myApp').component('plan', {
             $scope.plans = $filter('orderBy')($scope.plans, 'start', true);
             $scope.plan = plan;
             $scope.planProgressValue = 0;
+            $scope.$emit('onCreatePlanEvent', $scope.plan);
             notify('success', 'Plan created.');
           });
         }, function(reason) {

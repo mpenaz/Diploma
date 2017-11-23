@@ -225,9 +225,30 @@ module.controller('GlobalCtrl', function($timeout, $rootScope, $scope, $http, us
       return true;
     }
     return false;
-  }
+  };
 
   $scope.$on('onReviewPlanEvent', onReview);
+  $scope.$on('onCreatePlanEvent', onCreate);
+
+  function onCreate(event, plans) {
+    if (angular.isArray(plans)) {
+      for (var i = 0; i < plans.length; i++) {
+        onCreateTodo(plans[i]);
+      }
+    } else {
+      onCreateTodo(plans);
+    }
+  };
+
+  function onCreateTodo(plan) {
+    var nots = $scope.todos.notifications;
+    for (var i = 0; i < nots.length; i++) {
+      if (nots[i].associate != null && nots[i].associate.id == plan.user_id) {
+        nots.splice(i, 1);
+        break;
+      }
+    }
+  };
 
   function onReview(event, plan) {
     var nots = $scope.todos.notifications;

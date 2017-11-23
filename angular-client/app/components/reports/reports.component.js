@@ -58,6 +58,7 @@ angular.module('myApp').controller('reportsController', ['$filter', '$scope', '$
             }
           }
           sortPlans();
+          $scope.$emit('onCreatePlanEvent', plans);
           if (plans.length > 1) {
             notify('success', 'Plans created.');
           } else {
