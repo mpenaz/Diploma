@@ -97,7 +97,6 @@ angular.module('myApp').controller('reportsController', ['$filter', '$scope', '$
           user: $scope.currentUser
         });
       });
-      //$state.go('reportDetail', {obj: subordinate, report: true, user: $scope.currentUser});
     };
   }
 ]);

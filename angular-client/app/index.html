@@ -45,9 +45,19 @@
     <script src="services/services.js"></script>
 </head>
 
-<body data-ng-controller="GlobalCtrl">
-<div >
- <nav class="navbar navbar-default navbar-pf" role="navigation">
+<style>
+  .navbar-pf-vertical .drawer-pf {
+    height: calc(100vh - 100px);
+    top: 80px;
+  }
+  .drawer-pf .panel-heading {
+    display: none;
+  }
+</style>
+
+<body style="padding-top:70px" data-ng-controller="GlobalCtrl">
+<div>
+ <nav class="navbar navbar-default navbar-pf navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -83,16 +93,31 @@
                 <li ng-if="associates[0]" ng-class="{active: teamClass}">
                     <a href="" ng-click="shared()">Shared Goals</a>
                 </li>
+                <li class="nav pull-right">
+                  <a class="nav-item-iconic" ng-click="toggleShowDrawer()">
+                    <span class="fa fa-bell" title="Notifications"></span>
+                    <span ng-if="unreadNotifications()" class="badge badge-pf-bordered"> </span>
+                  </a>
+                </li>
             </ul>
         </div>
     </nav>
+    <div class="layout-pf-fixed">
+      <div class="navbar-pf-vertical">
+        <pf-notification-drawer drawer-hidden="hideDrawer" drawer-title="My Tasks" allow-expand="false"
+             notification-groups="todos" on-close="closeDrawer"
+             notification-body-include="todos/todos.component.html"
+             custom-scope="customScope" notification-track-field="uid">
+        </pf-notification-drawer>
+      </div>
+    </div>
     <div ng-show="notification" class="container-fluid">
       <div class="row">
         <div class="col-md-offset-4 col-md-4">
           <pf-inline-notification pf-notification-type="notification.type"
                      pf-notification-header="notification.header"
                      pf-notification-message="notification.message">
-                   </pf-inline-notification>
+          </pf-inline-notification>
         </div>
       </div>
     </div>

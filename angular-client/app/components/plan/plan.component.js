@@ -108,10 +108,6 @@ angular.module('myApp').component('plan', {
         }
       };
 
-      $ctrl.cancelReview = function() {
-        $state.go($rootScope.previousState.name, $rootScope.previousState.params);
-      };
-
       $ctrl.submitForReview = function(plan) {
         var data = {};
         data.header = 'Submit plan for review';
@@ -142,6 +138,10 @@ angular.module('myApp').component('plan', {
         });
       };
 
+      $ctrl.cancelReview = function() {
+        $state.go($rootScope.previousState.name, $rootScope.previousState.params);
+      };
+
       $ctrl.submitReview = function(form) {
         if (form.$invalid) {
           $ctrl.evalSubmitted = true;
@@ -153,7 +153,16 @@ angular.module('myApp').component('plan', {
           $scope.plan.evaluation_id = data.data.id;
           $scope.plan.evaluation = data.data;
           $scope.plan.status = 'reviewed';
-          $state.go($rootScope.previousState.name, $rootScope.previousState.params);
+          $scope.$emit('onReviewPlanEvent', $scope.plan);
+          if ($rootScope.previousState.name != 'reportDetail') {
+            $state.go('reportDetail', {
+              obj: $ctrl.user,
+              report: true,
+              user: $ctrl.user
+            });
+          } else {
+            $state.go($rootScope.previousState.name, $rootScope.previousState.params);
+          }
         });
       }
 

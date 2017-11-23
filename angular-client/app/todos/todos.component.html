@@ -1,0 +1,19 @@
+<div class="drawer-pf-notification-content">
+  <span class="drawer-pf-notification-message">
+    <span class="pficon pficon-user pull-left"></span>
+    <div ng-if="notification.plan">
+      <span>&nbsp;&nbsp;<a href="" ng-click="$ctrl.customScope.reportDetail(notification.associate)">{{notification.associate.name}}</a></span>
+      <div class="drawer-pf-notification-info">
+        <a href="" ng-click="$ctrl.customScope.reviewPlan(notification)">Review plan</a>
+      </div>
+    </div>
+
+    <div ng-if="!notification.plan">
+      <span>&nbsp;&nbsp;<a href="" ng-click="$ctrl.customScope.reportDetail(notification.associate)">{{notification.associate.name}}</a></span>
+      <div class="drawer-pf-notification-info">
+        Create plan
+      </div>
+    </div>
+
+  </span>
+</div>

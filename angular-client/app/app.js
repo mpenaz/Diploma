@@ -146,10 +146,97 @@ module.controller('GlobalCtrl', function($timeout, $rootScope, $scope, $http, us
       $state.go('home', {
         obj: $scope.currentUser
       });
-      userService.getSubordinates($scope.currentUser.id).then(function(data) {
+      userService.getSubordinates($scope.currentUser.id, true).then(function(data) {
         $scope.associates = data.data;
+        $scope.todos = createNotifications($scope.associates);
       });
     });
+  };
+
+  function createNotifications(associates) {
+    var notificationList = [];
+    for (var i = 0; i < associates.length; i++) {
+      var needsPlan = true;
+      for (var j = 0; j < associates[i].plans.length; j++) {
+        if (associates[i].plans[j].status == 'completed') {
+          var notification = {};
+          notification.associate = associates[i];
+          notification.plan = associates[i].plans[j];
+          notification.status = 'completed';
+          notificationList.push(notification);
+        }
+        if (associates[i].plans[j].status == 'created') {
+          needsPlan = false;
+        }
+      }
+      if (needsPlan) {
+        var notification = {};
+        notification.associate = associates[i];
+        notification.status = 'created';
+        notificationList.push(notification);
+      }
+    }
+
+    var notifications = {
+      notifications: notificationList
+    };
+    return notifications;
+  };
+
+  $scope.hideDrawer = true;
+  $scope.toggleShowDrawer = function() {
+    $scope.hideDrawer = !$scope.hideDrawer;
+  };
+
+  $scope.closeDrawer = function() {
+    $scope.hideDrawer = true;
+  };
+
+  $scope.customScope = {};
+
+  $scope.customScope.reportDetail = function(associate) {
+    userService.getUser(associate.id).then(function(data) {
+      $state.go('reportDetail', {
+        obj: data.data,
+        report: true,
+        user: $scope.currentUser
+      });
+      $scope.homeClass = false;
+      $scope.reportsClass = true;
+      $scope.teamClass = false;
+    });
+  };
+
+  $scope.customScope.reviewPlan = function(notification) {
+    $state.go('review', {
+      obj: notification.associate,
+      report: false,
+      user: $scope.currentUser,
+      review: notification.plan,
+      callBack: notification.plan
+    });
+    $scope.homeClass = false;
+    $scope.reportsClass = true;
+    $scope.teamClass = false;
+  };
+
+  $scope.unreadNotifications = function() {
+    if ($scope.todos != null && $scope.todos.notifications.length > 1) {
+      return true;
+    }
+    return false;
+  }
+
+  $scope.$on('onReviewPlanEvent', onReview);
+
+  function onReview(event, plan) {
+    var nots = $scope.todos.notifications;
+    for (var i = 0; i < nots.length; i++) {
+      if (nots[i].plan != null && nots[i].plan.id == plan.id) {
+        nots.splice(i, 1);
+        break;
+      }
+    }
   };
 
   this.$onInit = function() {
