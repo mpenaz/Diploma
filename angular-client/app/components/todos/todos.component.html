@@ -11,9 +11,8 @@
     <div ng-if="!notification.plan">
       <span>&nbsp;&nbsp;<a href="" ng-click="$ctrl.customScope.reportDetail(notification.associate)">{{notification.associate.name}}</a></span>
       <div class="drawer-pf-notification-info">
-        Create plan
+        <a href="" ng-click="$ctrl.customScope.createPlan()">Create plan</a>
       </div>
     </div>
-
   </span>
 </div>

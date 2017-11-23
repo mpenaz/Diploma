@@ -207,6 +207,15 @@ module.controller('GlobalCtrl', function($timeout, $rootScope, $scope, $http, us
     });
   };
 
+  $scope.customScope.createPlan = function() {
+    $state.go('reports', {
+      obj: $scope.currentUser
+    });
+    $scope.homeClass = false;
+    $scope.reportsClass = true;
+    $scope.teamClass = false;
+  };
+
   $scope.customScope.reviewPlan = function(notification) {
     $state.go('review', {
       obj: notification.associate,
@@ -221,7 +230,7 @@ module.controller('GlobalCtrl', function($timeout, $rootScope, $scope, $http, us
   };
 
   $scope.unreadNotifications = function() {
-    if ($scope.todos != null && $scope.todos.notifications.length > 1) {
+    if ($scope.todos != null && $scope.todos.notifications.length > 0) {
       return true;
     }
     return false;
@@ -243,7 +252,7 @@ module.controller('GlobalCtrl', function($timeout, $rootScope, $scope, $http, us
   function onCreateTodo(plan) {
     var nots = $scope.todos.notifications;
     for (var i = 0; i < nots.length; i++) {
-      if (nots[i].associate != null && nots[i].associate.id == plan.user_id) {
+      if (nots[i].associate != null && nots[i].associate.id == plan.user_id && nots[i].plan == null) {
         nots.splice(i, 1);
         break;
       }
